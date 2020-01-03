@@ -1,0 +1,49 @@
+{
+  "name": "electorn-vue-ts",
+  "version": "0.0.1",
+  "description": "Electron vue typescript boilerplate",
+  "author": "kimdo489 <kimdo489@nts-corp.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm-run-all --parallel build:*",
+    "build:main": "webpack --config scripts/webpack.config.main.js",
+    "build:renderer": "webpack --config scripts/webpack.config.renderer.js",
+    "watch": "npm-run-all --parallel watch:*" ,
+    "watch:main": "webpack --config scripts/webpack.config.main.js --watch",
+    "watch:renderer": "webpack --config scripts/webpack.config.renderer.js --watch",
+    "dist": "npm-run-all --parallel dist:*",
+    "dist:mac": "cross-env NODE_ENV=production webpack && electron-builder -c --mac",
+    "dist:linux": "cross-env NODE_ENV=production webpack && electron-builder -c --linux",
+    "dist:win32": "cross-env NODE_ENV=production webpack && electron-builder -c --win --ia32",
+    "dist:win64": "cross-env NODE_ENV=production webpack && electron-builder -c --win --x64",
+    "electron": "electron dist/main_bundle.js",
+    "pack": "npm run pack:main && npm run pack:renderer",
+    "pack:main": "cross-env NODE_ENV=production webpack --progress --colors --config scripts/webpack.main.config.js",
+    "pack:renderer": "cross-env NODE_ENV=production webpack --progress --colors --config scripts/webpack.renderer.config.js"
+  },
+  "devDependencies": {
+    "@types/electron-devtools-installer": "^2.2.0",
+    "copy-webpack-plugin": "^5.1.1",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.4.0",
+    "electron": "^7.1.7",
+    "electron-builder": "^21.2.0",
+    "electron-devtools-installer": "^2.2.4",
+    "mini-css-extract-plugin": "^0.9.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.7.4",
+    "vue-loader": "^15.8.3",
+    "vue-property-decorator": "^8.3.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-merge": "^4.2.2"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "vue": "^2.6.11",
+    "vuex": "^3.1.2"
+  }
+}

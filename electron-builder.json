@@ -1,0 +1,65 @@
+{
+  "appId": "com.example.electron-vue-ts",
+  "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
+  "directories": {
+    "buildResources": "resources",
+    "app": "src",
+    "output": "release"
+  },
+  "files": [
+    "main_bundle.js"
+  ],
+  "linux": {
+    "category": "Network;InstantMessaging",
+    "target": ["deb", "tar.gz", "appimage"],
+    "extraFiles": [
+      {
+        "filter": ["LICENSE.txt", "NOTICE.txt"]
+      },
+      {
+        "from": "resources/linux",
+        "filter": ["create_desktop_file.sh", "icon.svg", "README.md"]
+      }
+    ]
+  },
+  "mac": {
+    "category": "public.app-category.productivity",
+    "target": ["zip", "dmg"],
+    "darkModeSupport": true,
+    "extraResources": [
+      {
+        "filter": ["LICENSE.txt", "NOTICE.txt"]
+      }
+    ],
+    "hardenedRuntime": true,
+    "gatekeeperAssess": true
+  },
+  "dmg": {
+    "background": "resources/osx/DMG_BG.png",
+    "contents": [
+      {
+        "x": 152,
+        "y": 201
+      },
+      {
+        "x": 445,
+        "y": 201,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ],
+    "iconSize": 110,
+    "iconTextSize": 13
+  },
+  "win": {
+    "target": ["nsis", "zip"],
+    "extraFiles": [
+      {
+        "filter": ["LICENSE.txt", "NOTICE.txt"]
+      }
+    ]
+  },
+  "nsis": {
+    "artifactName": "${name}-setup-${version}-win.${ext}"
+  }
+}
